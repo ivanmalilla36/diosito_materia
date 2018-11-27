@@ -6,7 +6,7 @@ const api = express.Router()
 
 //Son puras rutas que hacen render a las vistas
 
-api.get('/index', ArticuloController.index)
+api.get('/', ArticuloController.index)
 
 api.get('/articulos', ArticuloController.articulo)
 
