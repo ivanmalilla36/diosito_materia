@@ -1,0 +1,26 @@
+{
+  "name": "formativa",
+  "version": "1.0.0",
+  "description": "es la aplicaccion de la meteria formativa para subir los trabajos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertojf2012/formativa.git"
+  },
+  "author": "Ivan Ibarra y Roberto Jimenez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertojf2012/formativa/issues"
+  },
+  "homepage": "https://github.com/robertojf2012/formativa#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13",
+    "nodemon": "^1.18.6"
+  }
+}
