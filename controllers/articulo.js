@@ -2,6 +2,10 @@
 
 const Articulo = require('../models/articulo')
 
+function index(req,res){
+  res.render('index.html')
+}
+
 function getArticulos(req,res){
 	Articulo.find({}).collation({locale:"en"}).exec((err,articulo)=>{
     if(err){
@@ -54,5 +58,6 @@ function putComentario(req,res){
 module.exports = {
 	getArticulos,
   postArticulos,
-  putComentario
+  putComentario,
+  index
 }

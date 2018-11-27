@@ -11,6 +11,10 @@ const path = require("path")
 const api = require('./routes/articulo');
 
 app.use(express.static(__dirname + '/public/'))
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
 
 //Agregado para poder tener permiso a la hora de hacer las peticiones GET, POST
 app.use(function(req, res, next) {
