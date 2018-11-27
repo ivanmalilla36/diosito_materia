@@ -6,6 +6,18 @@ function index(req,res){
   res.render('index.html')
 }
 
+function articulo(req,res){
+  res.render('articulo.html')
+}
+
+function blog(req,res){
+  res.redner('blog.html')
+}
+
+function publicar(req,res){
+  res.redner('publicar.html')
+}
+
 function getArticulos(req,res){
 	Articulo.find({}).collation({locale:"en"}).exec((err,articulo)=>{
     if(err){
@@ -59,5 +71,8 @@ module.exports = {
 	getArticulos,
   postArticulos,
   putComentario,
-  index
+  index,
+  blog,
+  publicar,
+  articulo
 }

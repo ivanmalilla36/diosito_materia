@@ -25,6 +25,6 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use('/api', api)
+app.use('/', api)
 
 module.exports = app;
