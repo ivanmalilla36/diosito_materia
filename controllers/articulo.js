@@ -11,11 +11,11 @@ function articulo(req,res){
 }
 
 function blog(req,res){
-  res.redner('blog.html')
+  res.render('blog.html')
 }
 
 function publicar(req,res){
-  res.redner('publicar.html')
+  res.render('publicar.html')
 }
 
 function getArticulos(req,res){
