@@ -38,7 +38,21 @@ function postArticulos(req,res){
   });
 }
 
+function putComentario(req,res){
+  var idArticulo = req.params.idArticulo;
+  var data = req.body;
+
+  Articulo.findByIdAndUpdate(idArticulo,{$push:{"Comentarios": data}},function(err,comentarioSaved){
+    if(err){
+      res.status(500).send();
+    }else{
+      res.status(200).send();
+    }
+  })
+}
+
 module.exports = {
 	getArticulos,
-  postArticulos
+  postArticulos,
+  putComentario
 }
