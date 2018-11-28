@@ -54,7 +54,8 @@ function fillData(){
 }
 
 function leerArticulo(id){
-  console.log(id)
+  localStorage.setItem("idArticulo",id);
+  window.location.href = "/articulos";
 }
 
 function formatMonth(date){
