@@ -16,6 +16,8 @@ api.get('/blog', ArticuloController.blog)
 
 //son funciones de los articulos
 
+api.get('/getArticulo/:articuloID', ArticuloController.getArticulo)
+
 api.get('/getArticulos', ArticuloController.getArticulos)
 
 api.post('/postArticulos', ArticuloController.postArticulos)

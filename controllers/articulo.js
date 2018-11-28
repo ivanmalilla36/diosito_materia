@@ -18,6 +18,18 @@ function publicar(req,res){
   res.render('publicar.html')
 }
 
+function getArticulo(req,res){
+  const articuloID = req.params.articuloID
+  Articulo.findById(articuloID, function(err,articulo){
+    if (err) {
+      res.status(500).send("Error al devolver marcador")
+      // console.log(err)
+    }else {
+     return res.status(200).send(articulo);
+    }
+  })
+}
+
 function getArticulos(req,res){
 	Articulo.find({}).collation({locale:"en"}).exec((err,articulo)=>{
     if(err){
@@ -71,6 +83,7 @@ module.exports = {
 	getArticulos,
   postArticulos,
   putComentario,
+  getArticulo,
   index,
   blog,
   publicar,
