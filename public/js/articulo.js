@@ -50,7 +50,7 @@ function fillData(){
   if(articulo.Imagen == ""){
 		document.getElementById('imagen').src = "/img/blog/blog-1.jpg";
   }else{
-  	document.getElementById('imagen').innerHTML = articulo.Imagen;
+  	document.getElementById('imagen').src = articulo.Imagen;
   }
 }
 
