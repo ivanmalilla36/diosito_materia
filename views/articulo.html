@@ -36,6 +36,12 @@
         <![endif]-->
     </head>
     <body onload="getArticulo()">
+
+        <!-- LOADER -->
+        <div class="loader" style="text-align: center; width:100%;height:100%;position:fixed;top:0px;left:0px;z-index:9999; background-color: rgba(255,255,255,0.5); display: none;">
+            <h3 style="line-height: 680px; color:#428bca;">Espere...</h3>
+        </div>
+        <!-- LOADER -->
         
         <!--================Header Menu Area =================-->
         <header class="main_menu_area">
@@ -78,7 +84,7 @@
                         <div class="single_blog_inner">
                             <div class="s_blog_main">
                                 <div class="blog_img">
-                                    <img class="img-fluid" src="/img/blog/blog-1.jpg" alt="">
+                                    <img id="imagen" class="img-fluid" src="/img/blog/blog-1.jpg" alt="">
                                     <div class="blog_date">
                                         <h4 id="txtDia"></h4>
                                         <h5 id="txtMesAno"></h5>
@@ -95,7 +101,9 @@
                             </div>
                            
                             <div class="blog_comment" id="comentariosDIV">
-                                <h3>Comentarios</h3>
+                                <h3 id="numComentarios"></h3>
+
+                                <p id="Nocomentarios" style="display: none;">No hay comentarios publicados. Se el primero!</p>
                                 <!--
                                 <div class="media">
                                     <div class="d-flex">
@@ -119,12 +127,13 @@
                                     <div class="form-group col-sm-12">
                                         <textarea class="form-control" name="message" id="inputMensaje" rows="1" placeholder="Mensaje"></textarea>
                                     </div>
+                                    <div class="col-sm-12">
+                                        <button onclick="publicarComentario()" class="btn submit_btn form-control">Publicar</button>
+                                    </div>
                                     
                                 </div>
 
-                                <div class="col-sm-12">
-                                        <button onclick="publicarComentario()" class="btn submit_btn form-control">Publicar</button>
-                                    </div>
+                                
 
                                 
                             </div>

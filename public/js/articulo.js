@@ -2,6 +2,7 @@ articulo = [];
 comentarios = [];
 
 function getArticulo(){
+	$(".loader").fadeIn();
 	var id = localStorage.getItem("idArticulo");
 	
 	$.ajax({
@@ -21,10 +22,12 @@ function getArticulo(){
 	        comentarios = data.Comentarios;
 	        fillData();
 	        fillComentarios();
+	        $(".loader").fadeOut();
 	      },
 	      error: function(data){
 	        alert("ERROR");
 	        console.log("ERROR "+data);
+	        $(".loader").fadeOut();
 	      }
 	  });
 
@@ -43,10 +46,29 @@ function fillData(){
   document.getElementById('txtNombre2').innerHTML = 'Por: '+articulo.Nombre;
   document.getElementById('txtFecha').innerHTML = 'Fecha: '+fecha.getUTCDate()+'/'+mes+'/'+fecha.getUTCFullYear();
   document.getElementById('txtDescripcion').innerHTML = articulo.Descripcion;
+
+  if(articulo.Imagen == ""){
+		document.getElementById('imagen').src = "/img/blog/blog-1.jpg";
+  }else{
+  	document.getElementById('imagen').innerHTML = articulo.Imagen;
+  }
 }
 
 function fillComentarios(){
 	var html = '';
+
+	comentarios.sort(function(a,b){
+    return b.Fecha.localeCompare(a.Fecha);
+  });
+
+	document.getElementById('numComentarios').innerHTML = "Comentarios ("+comentarios.length+")";
+
+	if(comentarios.length == 0){
+		document.getElementById('Nocomentarios').style.display = 'block';
+	}else{
+		document.getElementById('Nocomentarios').style.display = 'none';
+	}
+
   for (var key=0, size=comentarios.length; key<size;key++) {
 
     fecha = new Date(comentarios[key].Fecha);
@@ -83,6 +105,7 @@ function publicarComentario(){
 }
 
 function putComentario(nombre,fecha,correo,comentario){
+	$(".loader").fadeIn();
 	var id = localStorage.getItem("idArticulo");
 
 	$.ajax({
@@ -97,11 +120,13 @@ function putComentario(nombre,fecha,correo,comentario){
       },
       success: function(data){
       	alert("Comentario publicado");
-      	//location.reload(); 
+      	$(".loader").fadeOut();
+      	location.reload(); 
       },
       error: function(data){
         alert("ERROR");
         console.log(data.status);
+        $(".loader").fadeOut();
       }
   });
 }

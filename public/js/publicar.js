@@ -46,7 +46,7 @@ function publicarArticulo(){
 }
 
 function postArticulo(nombre,email,titulo,articulo,fecha,imagen){
-
+	$(".loader").fadeIn();
 	$.ajax({
 	    type: "POST",
 	    url: 'https://tiralaodefiendela.herokuapp.com/postArticulos',
@@ -60,13 +60,15 @@ function postArticulo(nombre,email,titulo,articulo,fecha,imagen){
 	        Imagen: imagen
 	    },
 	    success: function(data){
-	    	alert("OK");
-	    	console.log(data);
+	    	alert("Articulo publicado exitosamente");
+	    	$(".loader").fadeOut();
+	    	window.location.href = "/blog";
+	    	//console.log(data);
 	    },
 	    error: function(data){
-	    	alert("ERROR");
-	    	console.log("ERROR");
-	    	console.log(data.status)
+	    	alert("Hubo un error");
+	    	$(".loader").fadeOut();
+	    	//console.log("ERROR");
 	    }
 	});
 

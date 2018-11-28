@@ -53,7 +53,6 @@ function postArticulos(req,res){
   articulo.Titulo = params.Titulo;
   articulo.Descripcion = params.Descripcion;
   articulo.Fecha = params.Fecha;
-  articulo.strAmat = params.strAmat;
   articulo.Imagen = params.Imagen;
   articulo.Comentarios = [];
 

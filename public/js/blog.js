@@ -1,6 +1,7 @@
 articulos = [];
 
 function getArticulos(){
+  $(".loader").fadeIn();
   $.ajax({
       type: "GET",
       url: 'https://tiralaodefiendela.herokuapp.com/getArticulos',
@@ -16,25 +17,39 @@ function getArticulos(){
         //console.log(data);
         articulos = data;
         fillData();
+        $(".loader").fadeOut();
       },
       error: function(data){
         alert("ERROR");
         console.log("ERROR "+data);
+        $(".loader").fadeOut();
       }
   });
 }
 
 function fillData(){
   var html = '';
+
+  articulos.sort(function(a,b){
+    return b.Fecha.localeCompare(a.Fecha);
+  });
+
   for (var key=0, size=articulos.length; key<size;key++) {
 
     fecha = new Date(articulos[key].Fecha);
     mes = formatMonth(fecha);
+    var imagen = "";
+
+    if(articulos[key].Imagen ==""){
+      imagen = '<img class="img-fluid" style="width:825px; height: 245px;" src="/img/blog/blog-1.jpg" alt="">'
+    }else{
+      imagen = '<img class="img-fluid" style="width:825px; height: 245px;" src="'+articulos[key].Imagen+'" alt="">'
+    }
 
     html += //'<tr><td>'
             '<div class="blog_main_item">'+
               '<div class="blog_img">'+
-                  '<img class="img-fluid" style="width:825px; height: 245px;" src="'+articulos[key].Imagen+'" alt="">'+
+                  imagen+
                   '<div class="blog_date">'+
                     '<h4>'+fecha.getUTCDate()+'</h4>'+
                     '<h5>'+mes+', '+fecha.getUTCFullYear()+'</h5>'+
