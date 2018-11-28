@@ -84,7 +84,7 @@ function publicarComentario(){
 
 function putComentario(nombre,fecha,correo,comentario){
 	var id = localStorage.getItem("idArticulo");
-	console.log(id);
+
 	$.ajax({
       type: "PUT",
       url: 'https://tiralaodefiendela.herokuapp.com/putComentario/'+id,
@@ -95,14 +95,13 @@ function putComentario(nombre,fecha,correo,comentario){
 	      Correo: correo,
 	      Comentario: comentario
       },
-      crossDomain:true,
       success: function(data){
       	alert("Comentario publicado");
       	//location.reload(); 
       },
       error: function(data){
         alert("ERROR");
-        console.log(data);
+        console.log(data.status);
       }
   });
 }
