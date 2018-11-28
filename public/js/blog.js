@@ -1,34 +1,72 @@
+articulos = [];
 
 function getArticulos(){
-
+  $.ajax({
+      type: "GET",
+      url: 'https://tiralaodefiendela.herokuapp.com/getArticulos',
+      /*
+      data: {
+          nombre: nombre,
+          email: email,
+          telefono: telefono,
+          mensaje: mensaje
+      },*/
+      success: function(data){
+        //alert("OK");
+        //console.log(data);
+        articulos = data;
+        fillData();
+      },
+      error: function(data){
+        alert("ERROR");
+        console.log("ERROR "+data);
+      }
+  });
 }
 
+function fillData(){
+  var html = '';
+  for (var key=0, size=articulos.length; key<size;key++) {
 
-//FORMAT DATE
-/*
-function formatDate(date) {
+    fecha = new Date(articulos[key].Fecha);
+    mes = formatMonth(fecha);
+
+    html += //'<tr><td>'
+            '<div class="blog_main_item">'+
+              '<div class="blog_img">'+
+                  '<img class="img-fluid" src="/img/blog/blog-1.jpg" alt="">'+
+                  '<div class="blog_date">'+
+                    '<h4>'+fecha.getUTCDate()+'</h4>'+
+                    '<h5>'+mes+', '+fecha.getUTCFullYear()+'</h5>'+
+                '</div>'+
+              '</div>'+
+              '<div class="blog_text">'+
+                '<a><h4>'+articulos[key].Titulo+'</h4></a>'+
+                '<div class="blog_author">'+
+                  '<a>'+articulos[key].Nombre+'</a>'+
+                '</div>'+
+                '<p>'+articulos[key].Descripcion+'</p>'+
+                '<a href="javascript:leerArticulo(\''+articulos[key]._id+'\');" class="more_btn">Leer Articulo Completo</a>'+
+              '</div>'+
+            '</div>'
+  }
+  $('#articuloDIV').append(html);
+}
+
+function leerArticulo(id){
+  console.log(id)
+}
+
+function formatMonth(date){
   var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
+    "Enero", "Febrero", "Marzo",
+    "Abril", "Mayo", "Junio", "Julio",
+    "Agosto", "Septiembre", "Octubre",
+    "Noviembre", "Diciembre"
   ];
+  var monthIndex = date.getUTCMonth();
 
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-
-  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  return monthNames[monthIndex];
 }
-*/
 
-/*
-var content = '';
-content +='<tr>';
-content += '<td>'+'<img style="max-width:100px; max-height: 100px;" src="'+ snapshot2.child("imagen").val() +'"'+'>'+'</td>';
-content += '<td>'+ snapshot2.child("titulo").val() +'</td>';
-content += '<td>'+ fecha +'</td>';
-content += '<td>'+ '<a onclick="editarNoticia(\''+fraccionamiento+'/noticias/'+snapshot2.key+'/'+'\')" class="btn green-haze btn-outline btn-circle btn-sm" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">'+ 'Editar' +'</a>' + '<a onclick="borrarNoticia(\''+fraccionamiento+'/noticias/'+snapshot2.key+'/'+'\',\''+snapshot2.child("imagen").val()+'\')" class="btn red-haze btn-outline btn-circle btn-sm" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">'+ 'Borrar' +'</a>' +'</td>';
-content +='</tr>';
-$('#tablaNoticias').append(content);
-*/
+//href="/articulos"
