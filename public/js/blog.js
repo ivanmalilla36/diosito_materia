@@ -34,7 +34,7 @@ function fillData(){
     html += //'<tr><td>'
             '<div class="blog_main_item">'+
               '<div class="blog_img">'+
-                  '<img class="img-fluid" src="/img/blog/blog-1.jpg" alt="">'+
+                  '<img class="img-fluid" style="width:825px; height: 245px;" src="'+articulos[key].Imagen+'" alt="">'+
                   '<div class="blog_date">'+
                     '<h4>'+fecha.getUTCDate()+'</h4>'+
                     '<h5>'+mes+', '+fecha.getUTCFullYear()+'</h5>'+
@@ -70,3 +70,4 @@ function formatMonth(date){
 }
 
 //href="/articulos"
+//src="/img/blog/blog-1.jpg"
