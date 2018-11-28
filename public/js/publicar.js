@@ -48,22 +48,25 @@ function publicarArticulo(){
 function postArticulo(nombre,email,titulo,articulo,fecha,imagen){
 
 	$.ajax({
-	    type: "GET",
-	    url: 'https://examen3api.herokuapp.com/api/cars',
-	    /*
+	    type: "POST",
+	    url: 'https://tiralaodefiendela.herokuapp.com/postArticulos',
+	    
 	    data: {
-	        nombre: nombre,
-	        email: email,
-	        telefono: telefono,
-	        mensaje: mensaje
-	    },*/
+	        Nombre: nombre,
+	        Correo: email,
+	        Titulo: titulo,
+	        Descripcion: articulo,
+	        Fecha: fecha,
+	        Imagen: imagen
+	    },
 	    success: function(data){
 	    	alert("OK");
 	    	console.log(data);
 	    },
 	    error: function(data){
 	    	alert("ERROR");
-	    	console.log("ERROR "+data);
+	    	console.log("ERROR");
+	    	console.log(data.status)
 	    }
 	});
 
