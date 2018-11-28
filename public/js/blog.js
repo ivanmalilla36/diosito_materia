@@ -60,15 +60,13 @@ function fillData(){
                 '<div class="blog_author">'+
                   '<a>'+articulos[key].Nombre+'</a>'+
                 '</div>'+
-                '<p id="CantidadTexto">'+articulos[key].Descripcion+'</p>'+
+                '<p class="LOL" id="CantidadTexto">'+(articulos[key].Descripcion).substring(0,400)+'...'+'</p>'+
                 '<a href="javascript:leerArticulo(\''+articulos[key]._id+'\');" class="more_btn">Leer Articulo Completo</a>'+
               '</div>'+
-            '</div>'
+            '</div>';
+
   }
   $('#articuloDIV').append(html);
-
-  var myDiv = $('#CantidadTexto');
-  myDiv.text(myDiv.text().substring(0,400)+'...')
 }
 
 function leerArticulo(id){
